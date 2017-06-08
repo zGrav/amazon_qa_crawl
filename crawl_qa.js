@@ -38,14 +38,14 @@ var c = new Crawler({
         }else{
             var $ = res.$;
 
-            var productDesc = $(".askProductDescription a").text().trim();
+            var productDesc = 'Product description: ' + $(".askProductDescription a").text().trim();
 
             var matches = $.html().toString().match(/(question-)(?!id)(\S+)[a-zA-Z0-9]/g);
 
             if (matches != null) {
               for (let i = 0; i < matches.length; i++) {
                 var questionEl = $("#" + matches[i]);
-                var question = questionEl[0].children[0].children[3].children[1].children[0].data.trim();
+                var question = 'Question: ' + questionEl[0].children[0].children[3].children[1].children[0].data.trim();
 
                 var answerEl = questionEl.next();
                 var answerOwner = answerEl[0].children[0].children[3].children[5];
@@ -53,15 +53,15 @@ var c = new Crawler({
                 if (answerOwner == undefined) {
                   continue;
                 } else {
-                  console.log('Product description: ' + productDesc);
+                  console.log(productDesc);
 
-                  console.log('Question: ' + question);
+                  console.log(question);
 
-                  var answer = answerEl[0].children[0].children[3].children[1].children[0].data.trim();
-                  console.log('Answer: ' + answer);
+                  var answer = 'Answer: ' + answerEl[0].children[0].children[3].children[1].children[0].data.trim();
+                  console.log(answer);
 
-                  answerOwner = answerEl[0].children[0].children[3].children[5].children[0].data.trim().replace('By ', '');
-                  console.log('Answered by: ' + answerOwner);
+                  answerOwner = 'Answered by: ' + answerEl[0].children[0].children[3].children[5].children[0].data.trim().replace('By ', '');
+                  console.log(answerOwner);
 
                   console.log();
 
@@ -69,10 +69,10 @@ var c = new Crawler({
 
                   console.log();
 
-                  fs.appendFileSync('QAs.txt', 'Product desc: ' + productDesc + '\r\n\r\n');
-                  fs.appendFileSync('QAs.txt', 'Question: ' + question + '\r\n\r\n');
-                  fs.appendFileSync('QAs.txt', 'Answer: ' + answer + '\r\n\r\n');
-                  fs.appendFileSync('QAs.txt', 'Answered by: ' + answerOwner + '\r\n\r\n');
+                  fs.appendFileSync('QAs.txt', productDesc + '\r\n\r\n');
+                  fs.appendFileSync('QAs.txt', question + '\r\n\r\n');
+                  fs.appendFileSync('QAs.txt', answer + '\r\n\r\n');
+                  fs.appendFileSync('QAs.txt', answerOwner + '\r\n\r\n');
                 }
               }
             } else {
