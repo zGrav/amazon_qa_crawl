@@ -1,0 +1,19 @@
+{
+  "name": "amazon_qa_crawl",
+  "version": "0.0.1",
+  "description": "Gets Q&A from random Amazon products",
+  "repository": "https://github.com/zGrav/amazon_qa_crawl",
+  "author": "David Silva <zgrav@null.net>",
+  "license": "BSD 2-clause",
+  "dependencies": {
+    "crawler": "^1.0.5",
+    "crypto": "^0.0.3",
+    "es6-promise": "^4.1.0",
+    "request": "^2.81.0",
+    "xml2js": "^0.4.17"
+  },
+  "scripts": {
+    "crawl_products": "node crawl_products.js",
+    "crawl_qa": "node crawl_qa.js"
+  }
+}
