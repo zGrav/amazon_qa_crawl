@@ -59,7 +59,7 @@ for (var page = 1; page <= 5; page++) {
     } else {
       results.forEach(function (res, idx) {
         if (!ignoreProductType.includes(res.ItemAttributes[0].ProductTypeName.toString())) {
-          console.log('Exporting res.ASIN ' + res.ASIN + ' to ASINs file.');
+          console.log('Exporting res.ASIN ' + res.ASIN + ' to ASINs.txt file.');
 
           fs.appendFileSync('ASINs.txt', res.ASIN + ', ');
 

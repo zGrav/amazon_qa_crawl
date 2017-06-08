@@ -40,32 +40,43 @@ var c = new Crawler({
 
             var productDesc = $(".askProductDescription a").text().trim();
 
-            console.log("Product description: " + productDesc);
-
-            console.log();
-
             var matches = $.html().toString().match(/(question-)(?!id)(\S+)[a-zA-Z0-9]/g);
 
-            for (let i = 0; i < matches.length; i++) {
-              var questionEl = $("#" + matches[i]);
-              var question = questionEl[0].children[0].children[3].children[1].children[0].data.trim();
+            if (matches != null) {
+              for (let i = 0; i < matches.length; i++) {
+                var questionEl = $("#" + matches[i]);
+                var question = questionEl[0].children[0].children[3].children[1].children[0].data.trim();
 
-              var answerEl = questionEl.next();
-              var answerOwner = answerEl[0].children[0].children[3].children[5];
+                var answerEl = questionEl.next();
+                var answerOwner = answerEl[0].children[0].children[3].children[5];
 
-              if (answerOwner == undefined) {
-                continue;
-              } else {
-                console.log('Question: ' + question);
+                if (answerOwner == undefined) {
+                  continue;
+                } else {
+                  console.log('Product description: ' + productDesc);
 
-                var answer = answerEl[0].children[0].children[3].children[1].children[0].data.trim();
-                console.log('Answer: ' + answer);
+                  console.log('Question: ' + question);
 
-                answerOwner = answerEl[0].children[0].children[3].children[5].children[0].data.trim().replace('By ', '');
-                console.log('Answered by: ' + answerOwner);
+                  var answer = answerEl[0].children[0].children[3].children[1].children[0].data.trim();
+                  console.log('Answer: ' + answer);
 
-                console.log();
+                  answerOwner = answerEl[0].children[0].children[3].children[5].children[0].data.trim().replace('By ', '');
+                  console.log('Answered by: ' + answerOwner);
+
+                  console.log();
+
+                  console.log('Exporting QA of product ' + productDesc + ' to QA file.');
+
+                  console.log();
+
+                  fs.appendFileSync('QAs.txt', 'Product desc: ' + productDesc + '\r\n\r\n');
+                  fs.appendFileSync('QAs.txt', 'Question: ' + question + '\r\n\r\n');
+                  fs.appendFileSync('QAs.txt', 'Answer: ' + answer + '\r\n\r\n');
+                  fs.appendFileSync('QAs.txt', 'Answered by: ' + answerOwner + '\r\n\r\n');
+                }
               }
+            } else {
+              console.log('No Q&A found for this product!');
             }
         }
         done();
