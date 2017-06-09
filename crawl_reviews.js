@@ -29,7 +29,7 @@ function processFile() {
     exec = require('child_process').exec,
     child;
 
-child = exec('node crawl_qa_do.js ' + id, // command line argument directly in string
+child = exec('node crawl_reviews_do.js ' + id, // command line argument directly in string
   function (error, stdout, stderr) {      // one easy function to capture data/errors
     console.log('stdout: ' + stdout);
     console.log('stderr: ' + stderr);
