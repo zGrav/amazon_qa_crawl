@@ -15,6 +15,7 @@
   },
   "scripts": {
     "crawl_products": "node crawl_products.js",
-    "crawl_qa": "node crawl_qa.js"
+    "crawl_qa": "node crawl_qa.js",
+    "crawl_reviews": "node crawl_reviews.js"
   }
 }
