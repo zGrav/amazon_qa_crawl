@@ -28,8 +28,10 @@ fs.stat('./reviews_' + args[2] + '.txt', function (err, stats) {
 var reviewCrawlr = require('./main/reviews.js');
 
 reviewCrawlr.getReviewsForProductId(args[2]).then(function(val) {
-  console.log("got reviews ready for shipping");
-  fs.appendFileSync('reviews_' + args[2] + '.txt', JSON.stringify(val, null, 2));
+  if (val.length > 0) {
+    console.log("got reviews ready for shipping");
+    fs.appendFileSync('reviews_' + args[2] + '.txt', JSON.stringify(val, null, 2));  
+  }
 }).catch(function(reason) {
   console.error(reason);
 });

@@ -56,6 +56,10 @@ function doThings() {
                   } else {
                     var answer = 'Answer: ' + answerEl[0].children[0].children[3].children[1].children[0].data.trim();
 
+                    if (answer == 'Answer: ') {
+                      continue;
+                    }
+
                     answerOwner = 'Answered by: ' + answerEl[0].children[0].children[3].children[5].children[0].data.trim().replace('By ', '');
 
                     fs.appendFileSync('./QA_' + args[2] + '.txt', productDesc + '\r\n\r\n');
