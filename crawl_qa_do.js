@@ -95,6 +95,12 @@ function doThings(id) {
                   }
                 }
 
+                for (var i = 0; i < jsonObj.products.length; i++) {
+                  if (jsonObj.products[i].qa.length == 0) {
+                    jsonObj.products.splice(i, 1);
+                  }
+                }
+
                 fs.writeFileSync('QA.json', JSON.stringify(jsonObj, null, 2));
               } else {
                 console.log('No Q&A found for this product! ' + productDesc);
