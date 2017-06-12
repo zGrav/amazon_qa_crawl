@@ -1,7 +1,5 @@
 var fs = require('fs');
 
-var args = process.argv;
-
 fs.readFile('ASINs.txt', function read(err, data) {
     if (err) {
         throw err;
