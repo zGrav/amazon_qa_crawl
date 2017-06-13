@@ -89,10 +89,24 @@ function doThings(href) {
 
             var threadContent = $('.thread__content').text().trim();
 
-            var answers = $('.answer__content').text().trim();
+            var answers = $('.answer__content').html();
 
-            fs.appendFileSync('Qs_tom.txt', threadContent + '\r\n\r\n');
-            fs.appendFileSync('As_tom.txt', answers + '\r\n\r\n');
+            if (answers != null) {
+              answers = answers.replace(/<blockquote class="quote">[\s\S]*?<\/blockquote>/, '');
+
+              var regex = /(<([^>]+)>)/ig;
+
+              answers = answers.replace(regex, '');
+
+              answers = answers.replaceAll('&apos;', '\'');
+
+              answers = answers.replaceAll('&amp;', '&');
+
+              answers = answers.trim();
+
+              fs.appendFileSync('Qs_tom.txt', threadContent + '\r\n');
+              fs.appendFileSync('As_tom.txt', answers + '\r\n');
+            }
         }
           done();
       }
@@ -100,3 +114,8 @@ function doThings(href) {
 
   c.queue(href);
 }
+
+String.prototype.replaceAll = function(search, replacement) {
+    var target = this;
+    return target.replace(new RegExp(search, 'g'), replacement);
+};

@@ -127,8 +127,8 @@ function doThings(id) {
 
                     jsonObj.products[Object.keys(jsonObj.products).length - 1].qa.push({ question: question, answer: answer });
 
-                    fs.appendFileSync('Qs.txt', question + '\r\n\r\n');
-                    fs.appendFileSync('As.txt', answer + '\r\n\r\n');
+                    fs.appendFileSync('Qs.txt', question + '\r\n');
+                    fs.appendFileSync('As.txt', answer + '\r\n');
                   }
                 }
 
