@@ -50,6 +50,42 @@ function doThings(id) {
     }
   });
 
+  fs.stat('As.txt', function (err, stats) {
+    if (err) {
+        if (err.code != 'ENOENT') {
+          console.error(err);
+          return;
+        };
+
+        console.log('file does not exist.');
+    } else {
+      console.log('file exists.');
+
+      fs.unlink('As.txt',function(err){
+           if(err) return console.log(err);
+           console.log('file deleted.');
+      });
+    }
+  });
+
+  fs.stat('Qs.txt', function (err, stats) {
+    if (err) {
+        if (err.code != 'ENOENT') {
+          console.error(err);
+          return;
+        };
+
+        console.log('file does not exist.');
+    } else {
+      console.log('file exists.');
+
+      fs.unlink('Qs.txt',function(err){
+           if(err) return console.log(err);
+           console.log('file deleted.');
+      });
+    }
+  });
+
   var Crawler = require("crawler");
 
   var c = new Crawler({
@@ -89,7 +125,10 @@ function doThings(id) {
 
                     answerOwner = /*'Answered by: ' +*/ answerEl[0].children[0].children[3].children[5].children[0].data.trim().replace('By ', '');
 
-                    jsonObj.products[Object.keys(jsonObj.products).length - 1].qa.push({question: question, answer: answer});
+                    jsonObj.products[Object.keys(jsonObj.products).length - 1].qa.push({ question: question, answer: answer });
+
+                    fs.appendFileSync('Qs.txt', question + '\r\n\r\n');
+                    fs.appendFileSync('As.txt', answer + '\r\n\r\n');
                   }
                 }
 

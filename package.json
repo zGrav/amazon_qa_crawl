@@ -17,6 +17,8 @@
     "crawl_products": "node crawl_products.js",
     "crawl_qa": "node crawl_qa.js",
     "crawl_reviews": "node crawl_reviews.js",
-    "count_qa_lines": "node count_qa_lines.js"
+    "count_qa_lines": "node count_qa_lines.js",
+    "crawl_toms_hardware": "node crawl_toms_hardware.js",
+    "crawl_toms_hardware_href": "node crawl_toms_hardware_href.js"
   }
 }
